@@ -1,0 +1,11 @@
+= smalldata
+
+The intent od this utility is to have it extract and damp data encoded in various formats from its input.
+
+It does not expect an entire file to be in the same format, but just searches for mating data and outputs it.
+
+Initialy it supports base64. So you should be able to feed it a file or stdin
+containing multiple chunks of base64 data and it will decode and output it.
+
+// vim: textwidth=88
+
