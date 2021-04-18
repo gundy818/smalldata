@@ -1,0 +1,13 @@
+name: smalldata
+version: 0.1.0
+
+authors:
+  - gundy <gundy@snakegully.net>
+
+targets:
+  smalldata:
+    main: src/smalldata.cr
+
+crystal: 1.0.0
+
+license: MIT

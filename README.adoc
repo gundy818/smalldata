@@ -1,11 +1,74 @@
 = smalldata
 
-The intent od this utility is to have it extract and damp data encoded in various formats from its input.
+The intent of this utility is to have it extract and damp data encoded in various
+formats from its input.
 
-It does not expect an entire file to be in the same format, but just searches for mating data and outputs it.
+It does not expect an entire file to be in the same format, but just searches for
+macting data and outputs it.
 
-Initialy it supports base64. So you should be able to feed it a file or stdin
-containing multiple chunks of base64 data and it will decode and output it.
+Initialy it supports base64. So you should be able to feed it a file or stdin containing
+multiple chunks of base64 data and it will decode and output it.
+
+
+== Installation
+
+  make
+  make install
+
+
+== Usage
+
+Dump the passed file to a number of subfiles automatically.
+
+  smalldata <infile>
+
+This will dump a number of files (assuming data is recognised). Each file will have a
+'-type><-index>' appended.
+
+For example, if you use an input file of 'aaa', and it contains two base64 encoded data
+blocks, then two files will be created:
+
+  smalldata aaa
+   create directory 'aaa.d'
+   output 'aaa.d/base64-001'
+   output 'aaa.d/base64-002'
+
+'aaa' is the original filename, 'base64' is the decoder for this section, '001' is a
+unique ID for this data chunk.
+
+Now, imagine that you want to recursively extract these files? What happens if
+'aaa.d/base64-001' contains other base64 encoded sections?
+
+  smalldata -r aaa
+    create directory 'aaa.d'
+    output 'aaa.d/base64-001'
+      create directory 'aaa.d/base64-001.d'
+      output 'aaa.d/base64-001.d/base64-001'
+      output 'aaa.d/base64-001.d/base64-002'
+    output 'aaa.d/base64-002'
+
+You can also feed it on stdin, in which case the base filename in utput is 'stdin'.
+
+  echo 'SGku' | smalldata
+   create directory 'stdin.d'
+   output 'stdin.d/base64-001'
+
+
+== Development
+
+
+== Contributing
+
+1. Fork it (<https://github.com/your-github-user/smalldata/fork>)
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
+
+== Contributors
+
+- [gundy](https://github.com/your-github-user) - creator and maintainer
 
 // vim: textwidth=88
 
