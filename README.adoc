@@ -53,6 +53,11 @@ You can also feed it on stdin, in which case the base filename in utput is 'stdi
    create directory 'stdin.d'
    output 'stdin.d/base64-001'
 
+If there is no content recognised, it will tell you:
+
+  smalldata aaa
+    No included data.
+
 
 == Development
 

@@ -3,3 +3,4 @@
 *.dwarf
 /lib/
 /.shards/
+smalldata
